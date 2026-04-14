@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body style="background:black;color:white;text-align:center;padding-top:40px;">
+<body style="background:black;color:white;text-align:center">
 
 <h2>📸 Real Image Upload</h2>
 
@@ -26,24 +26,33 @@ function toBase64(file){
 async function send(){
 
   let file = document.getElementById("file").files[0];
-  if(!file) return alert("rasm tanla");
+  if(!file){
+    alert("rasm tanla");
+    return;
+  }
 
   let base64 = await toBase64(file);
 
-  let res = await fetch("http://104.207.64.18:5000/analyze", {
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json"
-    },
-    body: JSON.stringify({
-      image: base64
-    })
-  });
+  try {
+    let res = await fetch("http://104.207.64.18:5000/analyze", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        image: base64
+      })
+    });
 
-  let data = await res.json();
+    let data = await res.json();
 
-  document.getElementById("res").innerText =
-    JSON.stringify(data);
+    document.getElementById("res").innerText =
+      JSON.stringify(data, null, 2);
+
+  } catch (e) {
+    document.getElementById("res").innerText =
+      "ERROR: " + e;
+  }
 }
 
 </script>

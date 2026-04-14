@@ -1,13 +1,25 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.apache.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Hello Cordova</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
-        Apache Cordova Team
+<widget id="com.durak.ai" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+    <name>DurakAI</name>
+
+    <description>AI Image App</description>
+
+    <author email="you@example.com" href="https://cordova.apache.org">
+        Beka
     </author>
+
+    <!-- Android internet ruxsat -->
+    <access origin="*" />
+    <allow-navigation href="*" />
+
+    <!-- MUHIM: HTTP (Failed to fetch fix) -->
+    <platform name="android">
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+    </platform>
+
     <content src="index.html" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
+
 </widget>
