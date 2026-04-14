@@ -11,12 +11,19 @@
 
     <content src="index.html" />
 
+    <!-- INTERNET -->
     <access origin="*" />
     <allow-navigation href="*" />
 
+    <!-- SDK FIX -->
     <platform name="android">
         <preference name="android-compileSdkVersion" value="36" />
         <preference name="android-targetSdkVersion" value="36" />
+
+        <!-- HTTP (FAILED FETCH FIX) -->
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
     </platform>
 
 </widget>
